@@ -1,0 +1,114 @@
+/* 9) Pseudo classes */
+.btn {
+	&, // 47) para que incluya el <button> con clase .btn
+	&:link, // 47) estas pseudoclasses sólo aplican a <a>
+	&:visited {
+		text-transform: uppercase;
+		text-decoration: none;
+		padding: 1.5rem 4rem; /* 18) equals to 15px & 40px because of the root font-size (html) */
+		display: inline-block;
+		border-radius: 10rem; /* 18) equals to 100px because of the root font-size (html) */
+		transition: all 0.2s; /* 
+        9) 	Se puede espefificar puntualmente qué ppiedad uno quiere animar, y en cto tiempo.
+        Esta ppiedad debe estar presente en el initial state ("en el elemento mismo"), as a rule. */
+
+		position: relative; /* 10) esto es en relación a la position del .btn::after */
+		font-size: $default-font-size; /* 18) equals to 16px because of the root font-size (html) */
+
+		// 47) Change for the <button> element
+		border: none;
+		cursor: pointer;
+	}
+
+	&:hover {
+		transform: translateY(
+			-3px
+		); /* Acá dejamos la unit value en px porque x 3px no vale la pena cambiar nada */
+		box-shadow: 0 1rem 2rem rgba($color-black, 0.2); /* rgba( X, Y, blur, shadow-color )*/
+		/* 18) equals to --  box-shadow: 0 10px 20px -- because of the root font-size (html) */
+		&::after {
+			transform: scaleX(1.4) scaleY(1.6);
+			opacity: 0;
+		}
+	}
+
+	&:active,
+	&:focus {
+		outline: none; // 47)
+		transform: translateY(-1px);
+		box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+		/* 18) equals to --  box-shadow: 0 5px 10px -- because of the root font-size (html) */
+	}
+
+	&--white {
+		background-color: $color-white;
+		color: $color-grey-dark;
+
+		&::after {
+			background-color: $color-white;
+		}
+	}
+
+	&--green {
+		background-color: $color-primary;
+		color: $color-white;
+
+		&::after {
+			background-color: $color-white;
+		}
+	}
+
+	/* 10) Pseudo Elements */
+	&::after {
+		content: "";
+		display: inline-block;
+		height: 100%; /* 10) ::after is treated as if it was a child of .btn so this 100% is the height/width of its parent */
+		width: 100%;
+		border-radius: 10rem; /* 18) equals to 100px because of the root font-size (html) */
+		position: absolute; /* 10) lo ubicamos directamente atras del elemento padre */
+		top: 0; /* 10) lo ubicamos directamente atras del elemento padre */
+		left: 0; /* 10) lo ubicamos directamente atras del elemento padre */
+		z-index: -1; /* 10) lo ubicamos directamente atras del elemento padre */
+
+		transition: all 0.4s; /* 10) this ppty is present here as it's the initial state of the pseudo-element */
+	}
+
+	&--animated {
+		animation: moveInBottom 0.5s ease-out 0.75s;
+		/*  ↑↑↑ shorthand for:
+        animation-name: moveInBottom;  -mandatory-
+        animation-duration: 1s;  -mandatory-
+        animation-timing-function: ease-out;
+        animation-delay: .75s
+        */
+
+		animation-fill-mode: backwards;
+		/* 10) it will apply the styles (up to 0%) before the animation starts. Before the keyframe 0% 
+        Esto evita que ni bien la pag termina de cargarse, el elemento aparezca en un flash en su estado original ANTES  de trigger the animation. Con esta ppiedad, la animación es triggered before the page is fully loaded, or that what is looks like at least. */
+	}
+}
+
+.btn-text {
+	&:link,
+	&:visited {
+		font-size: $default-font-size;
+		color: $color-primary;
+		display: inline-block;
+		text-decoration: none;
+		border-bottom: 1px solid $color-primary;
+		padding: 3px;
+		transition: all 0.2s;
+	}
+
+	&:hover {
+		background-color: $color-primary;
+		color: $color-white;
+		box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+		transform: translateY(0);
+	}
+}

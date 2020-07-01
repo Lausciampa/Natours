@@ -1,0 +1,70 @@
+.story {
+	width: 75%;
+	margin: 0 auto;
+	box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+	background-color: rgba($color-white, 0.6);
+	border-radius: 3px;
+	padding: 6rem;
+	padding-left: 9rem;
+	font-size: $default-font-size;
+	transform: skewX(-12deg);
+	// 42) en el pasado usabamos & > * {} y le dabamos transform: skewX(opposite value); para contrarrestar el efecto que este transform ejercía en los children. El tema es que acá no se puede usar este selector porque en &__shape ya tenemos un transform, y ese va a tomar presedencia. Por lo tanto, en este caso lo que hacemos es agregarlo dentro de ese transform y manualment tmb lo declaramos en &__text.
+	position: relative;
+
+	&__shape {
+		width: 15rem;
+		height: 15rem;
+		float: left;
+		// 42) For the following prop to work, it needs the width, height and float declared.
+		// 42) What this prop does is defininig how elements float around it.
+		-webkit-shape-outside: circle(50% at 50% 50%);
+		shape-outside: circle(50% at 50% 50%);
+		// 42) Y lo que hacemos acá es darle la forma del circulo al elemento.
+		-webkit-clip-path: circle(50% at 50% 50%);
+		clip-path: circle(50% at 50% 50%);
+		// 42) Acá lo que buscamos es poner un poco de espacio entre el circulo y el texto. Como el circulo está float:left; lo mejor en estos casos es usar transform: translate en lugar de margins or paddings.
+		transform: translateX(-3rem) skewX(12deg);
+	}
+
+	&__image {
+		// 42) al declarar esto, estamos diciendo 100% del parent element, no de la foto misma! O sea, 15rem. Usamos height o width, según las proporciones de la foto misma. En este caso, usamos height porque la foto es más ancha que larga.
+		height: 100%;
+		// 43) para centrar la imagen en medio del circulo:
+		transform: translateX(-4rem) scale(1.4);
+		// 43) y para evitar una forma rara que aparecía en el video pero que yo nunca vi:
+		backface-visibility: hidden;
+		transition: all 0.5s;
+	}
+
+	&__text {
+		transform: skewX(12deg);
+	}
+
+	&__caption {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 20%);
+		color: $color-white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+		text-align: center;
+		opacity: 0; // 43) this is the initial state
+		transition: all 0.5s;
+		backface-visibility: hidden; // 43) usamos esta prop one more time to fix un shake que hay al final del movimiento, que es tremendamente sutil porque yo ni lo veo...
+	}
+
+	&:hover &__caption {
+		opacity: 1;
+		transform: translate(
+			-50%,
+			-50%
+		); // 43) si bien sólo queremos mover el elemento verticalmente, usamos translate() en vez de translateY() porque arriba usamos translate(). De otra manera, no funcionan bien.
+	}
+
+	&:hover &__image {
+		transform: translateX(-4rem) scale(1);
+		// 43)
+		filter: blur(3px) brightness(80%);
+	}
+}

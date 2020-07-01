@@ -1,0 +1,57 @@
+@keyframes moveInLeft {
+	0% {
+		/* 8) duración de la animación  */
+		opacity: 0;
+		transform: translateX(
+			-10rem
+		); /* 18) equals to -100px because of the root font-size (html) */
+	}
+
+	80% {
+		/* 8) duración de la animación  */
+		transform: translateX(
+			1rem /* 18) equals to 10px because of the root font-size (html) */
+		); /* a esta altura, como el nro es + lo que hace es irse más allá de 0 along the X eje. Meaning la acción continuará 10px más allá de su punto final. */
+	}
+
+	100% {
+		/* 8) duración de la animación  */
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(
+			20rem
+		); /* 18) equals to 200px because of the root font-size (html) */
+	}
+
+	80% {
+		transform: translateX(
+			-2px
+		); /* 18) equals to -20px because of the root font-size (html) */
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}
+
+/* 10) */
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(
+			3rem
+		); /* 18) equals to 30px because of the root font-size (html) */
+	}
+
+	100% {
+		opacity: 1;
+		transform: translate(0);
+	}
+}

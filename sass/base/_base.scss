@@ -1,0 +1,22 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	/* 18) La idea es obtener acá un value font-size: 10px;. Pero si lo hard-codeamos, impedimos al usuario que utilice el zoom de tu sistema operativo en caso de que lo necesite. Y eso no es una buena práctica con respecto a la accessibility. 
+	Una vuelta de rosca para esto es usar porcentajes. Si hacemos font-size: 100%; decimos que el font-size sea igual al que el usuario haya definido (o el caso de que no haya definido nada, al default). Si el usuario cambió el default por 18px, el 100% se ajustará a esta value. 
+	Como nosotros queremos lograr el equivalente a 10px en el default de los casos, hacemos: 10/16  (10px que quiero / 16px el default). Esto me da=0.625. Multiplicamos esto x 100% y nos da el resultado final que necesitamos: 62.5% 
+	Para corroborar esto, puedo ir a las DevTools y ver en la tab 'Computed' el font-size final ;)
+
+	Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
+	font-size: 62.5%;
+	// 32) This is a global definition that states what 1rem is rather than just a typography value. That's why it stays in this file instead of in _typography.scss
+}
+
+body {
+	box-sizing: border-box;
+}

@@ -1,0 +1,100 @@
+.form {
+	&__group:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	&__input {
+		font-size: 1.5rem;
+		font-family: inherit;
+		color: inherit;
+		padding: 1.5rem 2rem;
+		border-radius: 2px;
+		background-color: rgba($color-white, 0.5);
+		border: none;
+		// 46) agregamos este borde transparente acá para que cuando se 'active' el borde de __input:focus, no me pegue un saltito de 3px para abajo el segundo input field. De otra manera, el borde $color-primary empujará al input field.
+		border-bottom: 3px solid transparent;
+		width: 90%;
+		display: block;
+		transition: all 0.3s;
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+			border-bottom: 3px solid $color-primary;
+		}
+
+		// 46) form pseudoclasses:
+		&:focus:invalid {
+			border-bottom: 3px solid $color-secondary-dark;
+		}
+
+		// 46) pseudoelement rather than a pseudo class
+		&::-webkit-input-placeholder {
+			color: $color-grey-dark-2;
+		}
+	}
+
+	&__label {
+		font-size: 1.2rem;
+		font-weight: 700;
+		margin-left: 2rem;
+		margin-top: 0.7rem;
+		display: block;
+		transition: all 0.3s;
+	}
+
+	// 46) using placeholder-show pseudoclass and the adjacent sibling selector (+)
+	// 46) :placeholder-show >> when the placeholder is shown -meaning we have writen nothing in our input, we want the label to be hidden:
+	&__input:placeholder-shown + &__label {
+		opacity: 0; // we use this opacity because it's the prop we're gonna animate along with transform. Otherwise, if we only want to hide the element, with this prop would be enough:
+		visibility: hidden;
+		transform: translateY(-4rem);
+	}
+
+	&__radio-group {
+		width: 49%;
+		display: inline-block;
+	}
+
+	&__radio-input {
+		display: none;
+	}
+
+	&__radio-label {
+		font-size: $default-font-size;
+		cursor: pointer;
+		position: relative;
+		padding-left: 5rem;
+	}
+
+	// 47) creamos los custom radio-buttons:
+	&__radio-button {
+		height: 3rem; // 47) this prop requires display:block or inline-block
+		width: 3rem; // 47) this prop requires display:block or inline-block
+		border: 5px solid $color-primary;
+		border-radius: 50%;
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: -0.4rem;
+
+		&::after {
+			content: "";
+			display: block;
+			height: 1.3rem;
+			width: 1.3rem;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: $color-primary;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+	}
+
+	&__radio-input:checked ~ &__radio-label &__radio-button:after {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,192 @@
+.card {
+	//FUNCTIONALITY
+
+	// 39) we use a very big nro to make the effect look real. The lower the value, the more dramatic effect.
+	perspective: 150rem;
+	-moz-perspective: 150rem;
+	position: relative;
+	// 39) because the children are set to position:absolute and therefore removed from their natural flow, the height of the parent colapses. To fix this, we just need to set the parent to the same height than their children. Also, without this height the perspective would not work properly:
+	height: 52rem;
+
+	&__side {
+		height: 52rem;
+		transition: all 0.8s ease;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		// 39) the following prop is to hide the element when it is not facing front (the user)
+		backface-visibility: hidden;
+		border-radius: 3px;
+		// 40) la sgte prop es para arreglar el hecho de que la imagen y el gradient que van arriba 'tapan' las esquinas volviendolas angulos de 90deg. Con eso, el border-radius vuelve a tener efecto:
+		overflow: hidden;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+		// 39)
+		&--front {
+			background-color: $color-white;
+		}
+		&--back {
+			transform: rotateY(180deg);
+
+			&-1 {
+				background-image: linear-gradient(
+					to right bottom,
+					$color-secondary-light,
+					$color-secondary-dark
+				);
+			}
+			&-2 {
+				background-image: linear-gradient(
+					to right bottom,
+					$color-primary-light,
+					$color-primary-dark
+				);
+			}
+			&-3 {
+				background-image: linear-gradient(
+					to right bottom,
+					$color-tertiary-light,
+					$color-tertiary-dark
+				);
+			}
+		}
+	}
+
+	// 39)
+	&:hover &__side--front {
+		transform: rotateY(-180deg);
+	}
+	&:hover &__side--back {
+		transform: rotateY(0);
+	}
+
+	// 40)
+	// FRONT SIDE STYLING
+	&__picture {
+		background-size: cover;
+		height: 23rem;
+		// 40) para mezclar la imagen con el gradient layer del child
+		background-blend-mode: screen;
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		// 41) esta prop clip-path me está cancelando el fix que hice con overflow:hidden para que ;las puntas me queden cuadradas. Así que voy a tenerlo que reescribir manualmente:
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+
+		&--1 {
+			background-image: linear-gradient(
+					to right bottom,
+					$color-secondary-light,
+					$color-secondary-dark
+				),
+				url(../img/nat-5.jpg);
+			// 40) el path lo tengo que pensar desde donde el css stylesheet compilada (css/style.css) va a alojarse
+		}
+		&--2 {
+			background-image: linear-gradient(
+					to right bottom,
+					$color-primary-light,
+					$color-primary-dark
+				),
+				url(../img/nat-6.jpg);
+			// 40) el path lo tengo que pensar desde donde el css stylesheet compilada (css/style.css) va a alojarse
+		}
+		&--3 {
+			background-image: linear-gradient(
+					to right bottom,
+					$color-tertiary-light,
+					$color-tertiary-dark
+				),
+				url(../img/nat-7.jpg);
+			// 40) el path lo tengo que pensar desde donde el css stylesheet compilada (css/style.css) va a alojarse
+		}
+	}
+
+	&__heading {
+		font-size: 2.8rem;
+		font-weight: 300;
+		text-transform: uppercase;
+		text-align: right;
+		color: $color-white;
+		position: absolute;
+		top: 12rem;
+		right: 2rem;
+		width: 75%;
+	}
+
+	&__heading-span {
+		padding: 1rem 1.5rem;
+
+		// 40) La sgte prop la usamos para tratar las dos lineaas de este mismo texto como dos entidades diferentes. De esta manera, el padding se aplica en cada línea, no solo al ppio y al final del txt.
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+
+		&--1 {
+			background-image: linear-gradient(
+				to right bottom,
+				rgba($color-secondary-light, 0.85),
+				rgba($color-secondary-dark, 0.85)
+			);
+		}
+		&--2 {
+			background-image: linear-gradient(
+				to right bottom,
+				rgba($color-primary-light, 0.85),
+				rgba($color-primary-dark, 0.85)
+			);
+		}
+		&--3 {
+			background-image: linear-gradient(
+				to right bottom,
+				rgba($color-tertiary-light, 0.85),
+				rgba($color-tertiary-dark, 0.85)
+			);
+		}
+	}
+
+	&__details {
+		padding: 3rem;
+		ul {
+			list-style: none;
+			width: 80%;
+			// 40) centering a block element inside another block element:
+			margin: 0 auto;
+
+			li {
+				text-align: center;
+				font-size: 1.5rem;
+				padding: 1rem;
+
+				&:not(:last-child) {
+					border-bottom: 1px solid $color-grey-light-2;
+				}
+			}
+		}
+	}
+
+	// FRONT SIDE STYLING
+	&__cta {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 90%;
+		text-align: center;
+	}
+
+	&__price-box {
+		margin-bottom: 8rem;
+		color: $color-white;
+	}
+
+	&__price-only {
+		font-size: 1.4rem;
+		text-transform: uppercase;
+	}
+
+	&__price-value {
+		font-size: 6rem;
+		font-weight: 100;
+	}
+}

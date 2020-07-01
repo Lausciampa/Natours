@@ -1,0 +1,96 @@
+.popup {
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba($color-black, 0.8);
+	z-index: 9999;
+
+	// 53) utilizo estas dos propiedades para esconder el popup y poder animarlas a la vez. Si uso display:none, no puedo animar esta propiedad.
+	opacity: 0;
+	visibility: hidden;
+
+	transition: all 0.3s;
+
+	&__content {
+		@include absCenter;
+		width: 75%;
+		background-color: $color-white;
+		box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+		border-radius: 3px;
+		display: table; // 52)
+		overflow: hidden; // 52) de vuelta, para que la esquina puntiaguda de la imagen no se superponga al border-radius
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.25);
+		transition: all 0.5s 0.2s; // 53) el último value es el delay
+	}
+
+	&__left {
+		width: 33.333333%;
+		display: table-cell; // 52) de esta manera, el left y el right cell tendrán la misma altura
+	}
+
+	&__right {
+		width: 66.6666667%;
+		display: table-cell; // 52) de esta manera, el left y el right cell tendrán la misma altura
+		vertical-align: middle; // 52) esta prop puede usarse en elementos que estén display:table-cell
+		padding: 3rem 5rem;
+	}
+
+	&__img {
+		display: block;
+		width: 100%;
+	}
+
+	&__text {
+		font-size: 1.4rem;
+		margin-bottom: 4rem;
+
+		// 52) usamos prefijo por lo menos para firefox
+		-moz-column-count: 2;
+		-moz-column-gap: 4rem;
+		-moz-column-rule: 1px solid $color-grey-light-2;
+
+		column-count: 2; // 52) cuantas columnas queres
+		column-gap: 4rem; // 52) 1em is the standar (en este caso sería 14px as 1em=font-size of current element
+		column-rule: 1px solid $color-grey-light-2; // 52) una barra exactamente el el medio de las columnas onda separador
+
+		-moz-hyphens: auto; // 52) -moz for mozilla firefox
+		-ms-hyphens: auto; // 52) -ms edge (microsoft)
+		-webkit-hyphens: auto; // 52) -webkit chrome and safari - (older versions)
+		hyphens: auto; // 52) para que separe las palabras x silabas y coloque un guión en la separación. Lo copado de esta prop es que al seleccionar la primera mitad de la palabra, selecciona la segunda mitad tmb ya que interpreta que es toda una misma palabra. Utiliza el <html lang= > value para identificar dnd cortar la palabra.
+	}
+
+	// OPEN STATES
+	// 53) hay <a>'s en el html que tienen href="#popup". Esto significa que su target es el elemento con id=popup cuando le dan click. Acá, el elemento con id=pop está inicialmente set to {opacity: 0; visibility: hidden;} pero al convertirse en el target (dsp del click al <a>) se vuelve visible:
+	&:target {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&:target &__content {
+		// 53) el content is styled when the elemen becomes the target
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	// 53) este <a> tmb tiene set un target. Dsp de hacer click en él, habrá un nuevo target, por lo que el target anterior se volverá nulo y el elemento volverá a su estado inicial.
+	&__close {
+		&:link,
+		&:visited {
+			color: $color-grey-dark;
+			position: absolute;
+			top: 2.5rem;
+			right: 2.5rem;
+			font-size: 3rem;
+			text-decoration: none;
+			display: inline-block;
+			transition: all 0.2s;
+			line-height: 1; // 53) como la X es texto, seteamos la line-height: 1; así la altura del texto no me jode las top/right proportions.
+		}
+		&:hover {
+			color: $color-primary;
+		}
+	}
+}
