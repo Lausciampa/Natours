@@ -41,7 +41,8 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: inherit;
+  /* 18) Best-practice: each element will inherit the box-sizing value assigned to the body selector. This makes it easier to change the box-sizing (like in plugins or other components) where we might want to use a diff prop for box-sizing */ }
 
 html {
   /* 18) La idea es obtener acá un value font-size: 10px;. Pero si lo hard-codeamos, impedimos al usuario que utilice el zoom de tu sistema operativo en caso de que lo necesite. Y eso no es una buena práctica con respecto a la accessibility. 

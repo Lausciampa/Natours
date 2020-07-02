@@ -3,7 +3,7 @@
 *::after {
 	margin: 0;
 	padding: 0;
-	box-sizing: inherit;
+	box-sizing: inherit; /* 18) Best-practice: each element will inherit the box-sizing value assigned to the body selector. This makes it easier to change the box-sizing (like in plugins or other components) where we might want to use a diff prop for box-sizing */
 }
 
 html {
