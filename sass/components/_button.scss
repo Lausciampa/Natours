@@ -84,7 +84,7 @@
 
 		animation-fill-mode: backwards;
 		/* 10) it will apply the styles (up to 0%) before the animation starts. Before the keyframe 0% 
-        Esto evita que ni bien la pag termina de cargarse, el elemento aparezca en un flash en su estado original ANTES  de trigger the animation. Con esta ppiedad, la animación es triggered before the page is fully loaded, or that what is looks like at least. */
+        Esto evita que ni bien la pag termina de cargarse, el elemento aparezca en un flash en su estado original ANTES de trigger the animation. */
 	}
 }
 

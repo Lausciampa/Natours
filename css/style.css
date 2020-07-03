@@ -45,7 +45,7 @@
   /* 18) Best-practice: each element will inherit the box-sizing value assigned to the body selector. This makes it easier to change the box-sizing (like in plugins or other components) where we might want to use a diff prop for box-sizing */ }
 
 html {
-  /* 18) La idea es obtener acá un value font-size: 10px;. Pero si lo hard-codeamos, impedimos al usuario que utilice el zoom de tu sistema operativo en caso de que lo necesite. Y eso no es una buena práctica con respecto a la accessibility. 
+  /* 18) La idea es obtener acá un value font-size: 10px;. Pero si lo hard-codeamos, impedimos al usuario que utilice el zoom de tu sistema operativo en caso de que lo necesite. Y eso no es una buena práctica con respecto a accessibility. 
 	Una vuelta de rosca para esto es usar porcentajes. Si hacemos font-size: 100%; decimos que el font-size sea igual al que el usuario haya definido (o el caso de que no haya definido nada, al default). Si el usuario cambió el default por 18px, el 100% se ajustará a esta value. 
 	Como nosotros queremos lograr el equivalente a 10px en el default de los casos, hacemos: 10/16  (10px que quiero / 16px el default). Esto me da=0.625. Multiplicamos esto x 100% y nos da el resultado final que necesitamos: 62.5% 
 	Para corroborar esto, puedo ir a las DevTools y ver en la tab 'Computed' el font-size final ;)
@@ -230,7 +230,7 @@ body {
         */
     animation-fill-mode: backwards;
     /* 10) it will apply the styles (up to 0%) before the animation starts. Before the keyframe 0% 
-        Esto evita que ni bien la pag termina de cargarse, el elemento aparezca en un flash en su estado original ANTES  de trigger the animation. Con esta ppiedad, la animación es triggered before the page is fully loaded, or that what is looks like at least. */ }
+        Esto evita que ni bien la pag termina de cargarse, el elemento aparezca en un flash en su estado original ANTES de trigger the animation. */ }
 
 .btn-text:link, .btn-text:visited {
   font-size: 1.6rem;
