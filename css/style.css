@@ -1,4 +1,20 @@
 @charset "UTF-8";
+/*
+0 - 600px : Phone
+600 - 900px : Tablet Portrait
+900 - 1200px : Tablet Landscape
+[1200 - 1800px : regular styles written applies as this is a 'desktop first' project]
++1800px : Large Desktop
+
+$breakpoint argument choices:
+- phone
+- tablet-port
+- tablet-land
+- big-desktop
+
+In Media Queries (MQ), em's & rem's are not affected by the root font size that we set (html selector).
+This means that in MQ, em's and rem's are equal to the font size that comes from the browser (either the default value -16px- or whichever the user set). Em's are the best alternative in MQ, so we are using em's here. We simply divide the max/min-width by 16px [1em = 16px (browser's default value)] and we pass that value to the @media. E.g. 600px / 16px = 37.5em
+*/
 @keyframes moveInLeft {
   0% {
     /* 8) duración de la animación  */
@@ -50,8 +66,17 @@ html {
 	Como nosotros queremos lograr el equivalente a 10px en el default de los casos, hacemos: 10/16  (10px que quiero / 16px el default). Esto me da=0.625. Multiplicamos esto x 100% y nos da el resultado final que necesitamos: 62.5% 
 	Para corroborar esto, puedo ir a las DevTools y ver en la tab 'Computed' el font-size final ;)
 
-	Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
+    Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
   font-size: 62.5%; }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.27%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
   box-sizing: border-box; }
