@@ -68,12 +68,12 @@ html {
 
     Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
   font-size: 62.5%; }
-  @media (max-width: 56.25em) {
-    html {
-      font-size: 50%; } }
   @media (max-width: 75em) {
     html {
       font-size: 56.27%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
   @media (min-width: 112.5em) {
     html {
       font-size: 75%; } }
