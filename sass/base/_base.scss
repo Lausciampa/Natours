@@ -19,12 +19,12 @@ html {
 	// 32) This is a global definition that states what 1rem is rather than just a typography value. That's why it stays in this file instead of in _typography.scss
 
 	// 56) MEDIA QUERIES:
-	//width < 900px? - Keep this order so the narrower screen is not override by the larger screen.
+	//width < 1200px? - Keep this order so the narrower screen is not override by the larger screen.
 	@include respond(tablet-land) {
 		font-size: 56.27%; // if I want 1rem = 9px in this breakpoint: 9px/16px = 56.27%. This way, al the values that I have set in rem will respond to this change in the root font-size.
 	}
 
-	//width < 600px? - Keep this order so the narrower screen is not override by the larger screen.
+	//width < 900px? - Keep this order so the narrower screen is not override by the larger screen.
 	@include respond(tablet-port) {
 		// if I want 1rem = 8px in this breakpoint: 8px/16px = 50%. This way, al the values that I have set in rem will respond to this change in the root font-size.
 		font-size: 50%;
@@ -37,4 +37,10 @@ html {
 
 body {
 	box-sizing: border-box;
+	padding: 3rem; /* 18) equals to 30px because of the root font-size (html) */
+
+	// 57)
+	@include respond(tablet-port) {
+		padding: 0;
+	}
 }
