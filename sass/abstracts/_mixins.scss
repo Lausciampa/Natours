@@ -20,7 +20,7 @@
 0 - 600px : Phone
 600 - 900px : Tablet Portrait
 900 - 1200px : Tablet Landscape
-[1200 - 1800px : regular styles written applies as this is a 'desktop first' project]
+[1200 - 1800px : These are the regular styles already written (these apply as this is a 'desktop first' project)]
 +1800px : Large Desktop
 
 $breakpoint argument choices:
@@ -34,28 +34,35 @@ This means that in MQ, em's and rem's are equal to the font size that comes from
 */
 
 @mixin respond($breakpoint) {
-
 	@if $breakpoint == phone {
-		@media (max-width: 37.5em) { // 600px
-			@content; // 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
-		} 
-    }
-    
+		// 600px / 16px = 37.5em
+		@media (max-width: 37.5em) {
+			@content;
+		}
+		// 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
+	}
+
 	@if $breakpoint == tablet-port {
-		@media (max-width: 56.25em) { // 900px
-			@content; // 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
-		} 
-    }
-    
+		// 900px / 16px = 56.25em
+		@media (max-width: 56.25em) {
+			@content;
+		}
+		// 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
+	}
+
 	@if $breakpoint == tablet-land {
-		@media (max-width: 75em) { // 1200px
-			@content; // 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
-		} 
-    }
-    
+		// 1200px / 16px = 75em
+		@media (max-width: 75em) {
+			@content;
+		}
+		// 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
+	}
+
 	@if $breakpoint == big-desktop {
-		@media (min-width: 112.5em) { // 1800px
-			@content; // 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
-		} 
+		// 1800px / 16px = 112.5em
+		@media (min-width: 112.5em) {
+			@content;
+		}
+		// 56) @content allows to pass a block of code to the @media query. This block is found in the relevant selector's declaration.
 	}
 }

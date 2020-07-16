@@ -13,20 +13,21 @@ html {
 	Para corroborar esto, puedo ir a las DevTools y ver en la tab 'Computed' el font-size final ;)
 
     Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
-    
-    font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
-    
+
+	font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+
 	// 32) This is a global definition that states what 1rem is rather than just a typography value. That's why it stays in this file instead of in _typography.scss
 
 	// 56) MEDIA QUERIES:
+	@include respond(tablet-port) {
+		// if I want 1rem = 8px in this breakpoint: 8px/16px = 50%. This way, al the values that I have set in rem will respond to this change in the root font-size.
+		font-size: 50%;
+	}
+
 	@include respond(tablet-land) {
 		font-size: 56.27%; // if I want 1rem = 9px in this breakpoint: 9px/16px = 56.27%. This way, al the values that I have set in rem will respond to this change in the root font-size.
-    }
+	}
 
-	@include respond(tablet-port) { // if I want 1rem = 8px in this breakpoint: 8px/16px = 50%. This way, al the values that I have set in rem will respond to this change in the root font-size.
-		font-size: 50%;
-    }
-    
 	@include respond(big-desktop) {
 		font-size: 75%; // if I want 1rem = 12px in this breakpoint: 12px/16px = 75%. This way, al the values that I have set in rem will respond to this change in the root font-size.
 	}

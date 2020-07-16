@@ -3,7 +3,7 @@
 0 - 600px : Phone
 600 - 900px : Tablet Portrait
 900 - 1200px : Tablet Landscape
-[1200 - 1800px : regular styles written applies as this is a 'desktop first' project]
+[1200 - 1800px : These are the regular styles already written (these apply as this is a 'desktop first' project)]
 +1800px : Large Desktop
 
 $breakpoint argument choices:
@@ -68,12 +68,12 @@ html {
 
     Con esto me aseguro que si el usuario cambia el default font-size, esto se vea reflejado en mi página. Y todos felices. */
   font-size: 62.5%; }
-  @media (max-width: 75em) {
-    html {
-      font-size: 56.27%; } }
   @media (max-width: 56.25em) {
     html {
       font-size: 50%; } }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.27%; } }
   @media (min-width: 112.5em) {
     html {
       font-size: 75%; } }
